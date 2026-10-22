@@ -1,12 +1,9 @@
-import {test,expect} from '@playwright/test';
-import { Google } from '../pages/Google';
-test.describe("Google",()=>{
-  test.beforeEach(async({page})=>{
-    await page.goto("https://www.google.com")
-  })
-  test("Click About Tab",async({page})=>{
-    const google = new Google(page)
-    await google.clickAbout()
-    await page.pause()
-  })
-})
+import { expect, test } from "../fixtures/fixture";
+import { Google } from "../pages/Google";
+
+test("Handling multiple tabs", async ({ google }) => {
+  await google.page.goto("https://www.google.com");
+  await expect(google.page).toHaveTitle("Google");
+  await google.storeClick();
+  await google.page.pause();
+});
