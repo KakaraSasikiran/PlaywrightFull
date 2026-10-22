@@ -1,9 +1,14 @@
-import { expect, test } from "../fixtures/fixture";
-import { Google } from "../pages/Google";
+import {test} from '@playwright/test'
+test("hellos",async({page})=>{
+  await page.goto("https://rahulshettyacademy.com/AutomationPractice/")
+  page.once('dialog',async(dialog)=>{
+    // console.log(await sasi.message())
+    // // await sasi.accept()
+    // await sasi.dismiss()
+    
+  })
+  await page.getByRole("button",{name:'Confirm',exact:true}).click()
 
-test("Handling multiple tabs", async ({ google }) => {
-  await google.page.goto("https://www.google.com");
-  await expect(google.page).toHaveTitle("Google");
-  await google.storeClick();
-  await google.page.pause();
-});
+  await page.pause()
+})
+
